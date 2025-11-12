@@ -15,7 +15,7 @@ if ! command -v npx >/dev/null 2>&1; then
 fi
 
 commitMsg=$(cat "$msgFile")
-commitlintConfig="$(git rev-parse --show-toplevel)/.commitlintrc.yml"
+commitlintConfig="$(dirname "$0")/configurations/.commitlintrc.yml"
 
 if npx --no -- commitlint --config "$commitlintConfig" --edit "$msgFile"; then
     printf "\n\033[1;32m[commit-msg] 👀 Commit message is valid!\033[0m\n"
