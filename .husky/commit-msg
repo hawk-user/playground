@@ -5,12 +5,12 @@ set -e
 msgFile="$1"
 
 if [ -z "$msgFile" ]; then
-    printf "\n\033[1;31m[commit-msg] 🚨 ERROR: No commit message file provided!\033[0m\n\n"
+    printf "\033[1;31m[commit-msg] 🚨 ERROR: No commit message file provided!\033[0m\n"
     exit 1
 fi
 
 if ! command -v npx >/dev/null 2>&1; then
-    printf "\n\033[1;31m[commit-msg] 🚨 ERROR: npx is not installed. Please install Node.js & npm/pnpm.\033[0m\n\n"
+    printf "\033[1;31m[commit-msg] 🚨 ERROR: npx is not installed. Please install Node.js & npm/pnpm.\033[0m\n"
     exit 1
 fi
 
@@ -18,11 +18,11 @@ commitMsg=$(cat "$msgFile")
 commitlintConfig="$(dirname "$0")/configurations/.commitlintrc.yml"
 
 if npx --no -- commitlint --config "$commitlintConfig" --edit "$msgFile"; then
-    printf "\n\033[1;32m[commit-msg] 👀 Commit message is valid!\033[0m\n"
+    printf "\033[1;32m[commit-msg] 👀 Commit message is valid!\033[0m\n"
     printf "\033[1;34m message: %s\033[0m\n" "$commitMsg"
-    printf "\033[1;36m[commit-msg] ✨ Happy committing!\033[0m\n\n"
+    printf "\033[1;36m[commit-msg] ✨ Happy committing!\033[0m\n"
 else
     printf "\n\033[1;31m[commit-msg] 🚨 Invalid commit message!\033[0m\n"
-    printf "\033[33m[commit-msg] 💡 Please follow the conventional commit format.\033[0m\n\n"
+    printf "\033[33m[commit-msg] 💡 Please follow the conventional commit format.\033[0m\n"
     exit 1
 fi

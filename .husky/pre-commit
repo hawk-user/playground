@@ -3,23 +3,23 @@
 set -e
 
 if ! command -v npx >/dev/null 2>&1; then
-    printf "\n\033[1;31m[pre-commit] 🚨 ERROR: npx is not installed. Please install Node.js & npm/pnpm.\033[0m\n\n"
+    printf "\033[1;31m[pre-commit] 🚨 ERROR: npx is not installed. Please install Node.js & npm/pnpm.\033[0m\n"
     exit 1
 fi
 
-staged_files=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ts|tsx)$' || true)
+staged_files=$(git diff --cached --name-only --diff-filter=ACM | grep -Ei '\.(ts|tsx)$' || true)
 eslintConfig="$(dirname "$0")/configurations/eslint.config.ts"
 
 if [ -z "$staged_files" ]; then
-    printf "\033[1;36m[pre-commit] ⚡ No staged TS files to lint.\033[0m\n\n"
+    printf "\033[1;36m[pre-commit] ⚡ No staged TS files to lint.\033[0m\n"
     exit 0
 fi
 
 printf "\033[1;34m[pre-commit] 🛠 Running ESLint on staged files...\033[0m\n"
 
 if npx --no -- eslint --config "$eslintConfig" $staged_files --max-warnings=0; then
-    printf "\033[1;32m[pre-commit] 👀 ESLint passed!\033[0m\n\n"
-    printf "\033[1;36m[commit-msg] ✨ Happy linting!\033[0m\n\n"
+    printf "\033[1;32m[pre-commit] 👀 ESLint passed!\033[0m\n"
+    printf "\033[1;36m[pre-commit] ✨ Happy linting!\033[0m\n"
 else
     printf "\033[1;31m[pre-commit] 🚨 ESLint failed! Please fix the errors before committing.\033[0m\n\n"
     exit 1
