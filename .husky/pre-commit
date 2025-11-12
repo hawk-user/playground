@@ -7,7 +7,7 @@ if ! command -v npx >/dev/null 2>&1; then
     exit 1
 fi
 
-staged_files=$(git diff --cached --name-only --diff-filter=ACM | grep -Ei '\.(ts|tsx)$' || true)
+staged_files=$(git diff --cached --name-only --diff-filter=ACMR | grep -Ei '\.(ts|tsx)$' || true)
 eslintConfig="$(dirname "$0")/configurations/eslint.config.ts"
 
 if [ -z "$staged_files" ]; then
