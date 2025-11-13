@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+    --main-font: "Urbanist", sans-serif; 
+}
+
+body {
+    font-family: var(--main-font);
+}

@@ -10,10 +10,12 @@
         "react-dom": "^19.2.0"
     },
     "devDependencies": {
+        "@tailwindcss/vite": "^4.1.17",
         "@types/node": "^24.10.1",
         "@types/react": "^19.2.3",
         "@types/react-dom": "^19.2.3",
         "@vitejs/plugin-react-swc": "^4.2.2",
+        "tailwindcss": "^4.1.17",
         "vite": "^7.2.2"
     }
 }
