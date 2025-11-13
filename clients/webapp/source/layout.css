@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-    --main-font: "Urbanist", sans-serif; 
+    --main-font: "Inter", sans-serif;; 
 }
 
 body {

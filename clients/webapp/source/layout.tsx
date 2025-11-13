@@ -1,13 +1,15 @@
 import React from 'react';
-import { createRoot, hydrateRoot } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { SayHello } from './hello';
-import { PreRendered } from './pre.rendered';
+import { RoutingService } from './infra/routing';
 import './layout.css';
 
-const sayHelloContainer = document.getElementById('say-hello')!;
-const sayHelloNode = (<React.StrictMode><SayHello/></React.StrictMode>);
-createRoot(sayHelloContainer).render(sayHelloNode);
+const helloRoute = RoutingService.defineRoute('/', <SayHello/>);
+const layout = document.getElementById('layout')!;
 
-const preRenderedContainer = document.getElementById('pre-rendered')!;
-const preRenderedNode = (<React.StrictMode><PreRendered/></React.StrictMode>);
-hydrateRoot(preRenderedContainer, preRenderedNode);
+const node = (
+    <React.StrictMode>
+        {RoutingService.createRoutes([helloRoute])}
+    </React.StrictMode>);
+
+createRoot(layout).render(node);
