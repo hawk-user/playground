@@ -3,41 +3,41 @@ import { type JSX } from 'react';
 export type PagePath = `/${string}`;
 
 export class Page<
-    T extends string,
-    E extends JSX.Element,
+    Title extends string,
+    PageElement extends JSX.Element,
 > {
 
-    private title: T;
-    private pageElem: E
+    private title: Title;
+    private pageElement: PageElement
     private isFront: boolean;
 
     private constructor (
-        title: T,
-        pageElem: E,
+        title: Title,
+        pageElement: PageElement,
         isFront: boolean = false
     ) {
         this.title = title;
-        this.pageElem = pageElem;
+        this.pageElement = pageElement;
         this.isFront = isFront;
     }
 
     public static create<
-        A extends string,
-        N extends JSX.Element
+        Title extends string,
+        PageElement extends JSX.Element
     > (
-        title: A,
-        pageElem: N,
+        title: Title,
+        pageElement: PageElement,
         isFront: boolean = false
-    ): Page<A, N> {
-        return new Page(title, pageElem, isFront);
+    ): Page<Title, PageElement> {
+        return new Page(title, pageElement, isFront);
     }
 
-    public getTitle (): T {
+    public getTitle (): Title {
         return this.title;
     }
 
-    public getElement (): E {
-        return this.pageElem;
+    public getElement (): PageElement {
+        return this.pageElement;
     }
 
     private format (title: string): PagePath {
