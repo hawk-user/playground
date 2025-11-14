@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { FrontPageDefinition } from './pages/front-page';
-import { RoutingService } from './infra/routing';
+import { RoutingService } from './infra/web';
 import './index.css';
 
 const routes = [

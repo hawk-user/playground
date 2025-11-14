@@ -1,11 +1,11 @@
-import { Page } from '../../infra/routing';
+import { Page } from '../../infra/web';
 import { FrontPageLayout } from './front.page.layout';
+import { frontPageSEO } from './front.page.seo';
 
-const title = 'Welcome to';
+
 const isFrontPage = true;
+const { documentTitle } = frontPageSEO;
 
 export const FrontPageDefinition = Page.create(
-    title,
-    <FrontPageLayout/>,
-    isFrontPage
+    documentTitle, <FrontPageLayout seo={frontPageSEO}/>, isFrontPage
 );

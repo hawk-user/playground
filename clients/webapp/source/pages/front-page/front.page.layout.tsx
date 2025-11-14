@@ -1,5 +1,15 @@
-const Header = () => <>header</>
+import { UsePageSEO } from '../../infra/web';
 
-export const FrontPageLayout = () => (
-    <><Header/></>
-);
+const Header = () => <>header</>
+interface SearchEngineOptimization {
+    documentTitle: string;
+}
+
+interface PageLayoutProps {
+    seo: SearchEngineOptimization
+}
+
+export const FrontPageLayout = (props: PageLayoutProps) => {
+    UsePageSEO(props)
+    return <><Header/></>
+};

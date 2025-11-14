@@ -32,7 +32,7 @@ export class Page<
         return new Page(title, pageElement, isFront);
     }
 
-    public getTitle (): Title {
+    public getTitle (): string {
         return this.title;
     }
 
