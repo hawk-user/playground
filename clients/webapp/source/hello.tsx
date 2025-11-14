@@ -1,1 +1,0 @@
-export const SayHello = () => <>🎵 I just call to say Hello</>;

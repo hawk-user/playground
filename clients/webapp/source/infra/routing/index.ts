@@ -1,5 +1,9 @@
 export { 
+    type PagePath,
+    Page
+} from './page';
+
+export { 
     type RouteConfig,
-    type RoutePath,
     RoutingService
 } from './routing.service';
