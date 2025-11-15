@@ -1,6 +1,6 @@
 import { type JSX, type ReactElement } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Page, type PagePath } from './page';
+import { Page, type PagePath } from '../../components';
 
 export type RouteConfig = {
     readonly [x: string]: JSX.Element;

@@ -1,2 +1,3 @@
-export { FrontPageDefinition } from './front.page.definition';
-export { frontPageSEO } from './front.page.seo';
+export { FrontPageDefinition } from './definition';
+export { FrontPageLayout } from './layout';
+export { frontPageSEO } from './seo';
