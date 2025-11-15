@@ -1,5 +1,5 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDomClient from 'react-dom/client';
 import { FrontPageDefinition } from './pages/front-page';
 import { RoutingService } from './infra/web';
 import './index.css';
@@ -8,12 +8,12 @@ const routes = [
     RoutingService.defineRoute(FrontPageDefinition)
 ];
 
-const layout = document.getElementById('layout')!;
+const container = document.getElementById('root')!;
 
-const node = (
+const initialChildren = (
     <React.StrictMode>
         { RoutingService.createRoutes(routes) }
     </React.StrictMode>
 );
 
-createRoot(layout).render(node);
+ReactDomClient.hydrateRoot(container, initialChildren);

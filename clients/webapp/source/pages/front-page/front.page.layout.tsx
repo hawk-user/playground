@@ -1,15 +1,12 @@
-import { UsePageSEO } from '../../infra/web';
+import { UsePageSEO, type SearchEngineOptimization } from '../../infra/web';
 
-const Header = () => <>header</>
-interface SearchEngineOptimization {
-    documentTitle: string;
-}
+const Wip = () => <>...wip</>
 
 interface PageLayoutProps {
     seo: SearchEngineOptimization
 }
 
 export const FrontPageLayout = (props: PageLayoutProps) => {
-    UsePageSEO(props)
-    return <><Header/></>
+    UsePageSEO(props);
+    return <><Wip/></>;
 };
