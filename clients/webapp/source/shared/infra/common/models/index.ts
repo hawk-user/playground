@@ -1,0 +1,1 @@
+export { AgnosticController } from './agnostic.controller';
