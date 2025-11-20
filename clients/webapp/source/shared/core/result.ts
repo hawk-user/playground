@@ -2,14 +2,10 @@ export class Emit<K> {
 
     public readonly isEmitted = true;
     public readonly isInterrupted = false;
-    private readonly value: K;
+    public readonly value: K;
 
     constructor(value: K) {
         this.value = value;
-    }
-
-    retrieveValue (): K {
-        return this.value;
     }
 
 }
@@ -18,14 +14,10 @@ export class Interrupt<Cause = 'unprovidedCause'> {
 
     public readonly isEmitted = false;   
     public readonly isInterrupted = true;
-    private readonly cause: Cause;
+    public readonly cause: Cause;
 
     constructor(cause?: Cause) {
         this.cause = cause ?? 'unprovidedCause' as Cause;
-    }
-
-    retrieveCause (): Cause {
-        return this.cause;
     }
 
 }
