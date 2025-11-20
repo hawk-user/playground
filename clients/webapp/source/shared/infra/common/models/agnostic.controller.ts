@@ -1,18 +1,16 @@
-type Message<W> = Readonly<W>;
-type TextMessage = Message<string>;
+export type Message<T> = Readonly<T>;
+export type Text = Message<string>;
 
-export abstract class Outbound {
-
-    abstract useFallbackCode <K extends number>(): Readonly<K>;
-    abstract respondWithMessage<Q>(message: Message<Q>): this;
-    abstract respondWithText(text: Message<string>): this;
-    abstract withStatusCode<F extends number>(code: F): this;   
+export interface Outbound {
+    useFallbackCode (): Readonly<number>;
+    respondWithMessage<Content> (message: Message<Content>): this;
+    respondWithText (text: Text): this;
+    withStatusCode (code: number): this;   
 }
-
 
 export abstract class AgnosticController<Y = void> {
 
-    protected abstract executeImpl(
+    protected abstract executeImpl (
         outbound: Outbound,
     ): Promise<Y>;
 
@@ -22,41 +20,45 @@ export abstract class AgnosticController<Y = void> {
         try {
             await this.executeImpl(outbound);
         } catch (error: unknown) {
-            this.err(
-                outbound, 
-                outbound.useFallbackCode(),
-                String(error)
-            );
+            this.internal(outbound, String(error));
         }
     }
 
-    protected abstract message<A extends number, X>(
+    protected abstract message<Content> (
         outbound: Outbound,
-        statusCode: A,
-        message: Message<X>
+        statusCode: number,
+        message: Message<Content>
     ): Outbound;
 
-    protected abstract respondWithStatus<A extends number>(
+    protected abstract respondWithStatus (
         outbound: Outbound,
-        statusCode: A,
+        statusCode: number,
     ): Outbound;
 
-    protected abstract textResponse<A extends number>(
+    protected abstract textResponse (
         outbound: Outbound,
-        statusCode: A,
-        message: string
+        statusCode: number,
+        message: Text
     ): Outbound;
 
-    protected abstract ok<A extends number, R>(
+    protected abstract ok<Content>(
         outbound: Outbound,
-        statusCode: A,
-        message?: Message<R>
+        message?: Message<Content>
     ): Outbound;
 
-    protected abstract err<A extends number>(
+    protected abstract notFound (
         outbound: Outbound,
-        statusCode: A,
-        message: TextMessage,
+        message: Text,
+    ): Outbound;
+
+    protected abstract invalid (
+        outbound: Outbound,
+        message: Text,
+    ): Outbound;
+
+    protected abstract internal (
+        outbound: Outbound,
+        message: Text,
     ): Outbound;
 
 }
