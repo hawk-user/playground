@@ -48,4 +48,4 @@ export class UnreacheableFault extends Interrupt<BaseFault> {
 
 }
 
-export type Fault = InternalFault | ExternalFault
+export type Fault = ExternalFault | InternalFault | UnreacheableFault

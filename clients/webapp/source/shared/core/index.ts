@@ -10,6 +10,10 @@ export {
 } from './fault';
 
 export {
+    type Logic
+} from './logic';
+
+export {
     Emit,
     Interrupt,
     Result,

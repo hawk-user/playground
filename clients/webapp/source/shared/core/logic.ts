@@ -12,7 +12,7 @@ export interface Logic<
 
     execute(
         driving: DrivingPorts<D>,
-        driven: DrivenPorts<I>
+        driven?: DrivenPorts<I>
     ): Promise<R> | R;
     
 }
