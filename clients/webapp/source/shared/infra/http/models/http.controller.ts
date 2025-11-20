@@ -2,7 +2,7 @@ import {
     AgnosticController,
     type Message,
     type Text,
-    type Outbound
+    type DrivingFlow
 } from '@shared/infra/common/models';
 
 const okCode = 200;
@@ -17,70 +17,62 @@ type HttpCode = typeof okCode
 
 export abstract class HttpController<H> extends AgnosticController<H> {
 
-    protected message<Content> (
-        outbound: Outbound,
-        statusCode: HttpCode,
-        message: Message<Content>
-    ): Outbound {  
-        return outbound
-            .withStatusCode(statusCode)
+    protected message<T> (
+        drivingFlow: DrivingFlow<T>,
+        code: HttpCode,
+        message: Message<T>
+    ): DrivingFlow<T> {  
+        return drivingFlow
+            .withStatusCode(code)
             .respondWithMessage(message);
     }
 
-    protected respondWithStatus (
-        outbound: Outbound,
-        statusCode: HttpCode,
-    ): Outbound {
-        return outbound.withStatusCode(statusCode);
+    protected respondWithStatus<T> (
+        drivingFlow: DrivingFlow<T>,
+        code: HttpCode,
+    ): DrivingFlow<T> {
+        return drivingFlow.withStatusCode(code);
     }
 
     protected textResponse (
-        outbound: Outbound,
-        statusCode: HttpCode,
+        drivingFlow: DrivingFlow,
+        code: HttpCode,
         message: Text
-    ): Outbound {
-        return outbound
-            .withStatusCode(statusCode)
+    ): DrivingFlow {
+        return drivingFlow
+            .withStatusCode(code)
             .respondWithText(message);
     }
 
     protected ok<R>(
-        outbound: Outbound,
+        drivingFlow: DrivingFlow<R>,
         message?: Message<R>
-    ): Outbound {
+    ): DrivingFlow<R> {
         return message
-            ? this.message(outbound, 200, message)
-            : this.respondWithStatus(outbound, okCode);
+            ? this.message(drivingFlow, okCode, message)
+            : this.respondWithStatus(drivingFlow, okCode);
     }
 
     protected invalid (
-        outbound: Outbound,
+        drivingFlow: DrivingFlow,
         message: Text,
-    ): Outbound {
-        return this.textResponse(
-            outbound,
-            clientErrCode,
-            message
-        );
+    ): DrivingFlow {
+        return this.textResponse(drivingFlow, clientErrCode, message);
     }
 
     protected notFound (
-        outbound: Outbound,
+        drivingFlow: DrivingFlow,
         message: Text,
-    ): Outbound {
-        return this.textResponse(
-            outbound,
-            notFoundCode,
-            message
-        );
+    ): DrivingFlow {
+        return this.textResponse(drivingFlow, notFoundCode, message);
     }
 
     protected internal (
-        outbound: Outbound,
+        drivingFlow: DrivingFlow,
         message: Text,
-    ): Outbound {
+    ): DrivingFlow {
         return this.textResponse(
-            outbound,
+            drivingFlow,
             internalErrCode,
             message
         );
