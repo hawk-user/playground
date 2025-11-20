@@ -43,9 +43,9 @@ export abstract class AgnosticController<Y = void> {
     ): DrivingFlow;
 
     protected abstract success<T> (
-        drivingFlow: DrivingFlow,
+        drivingFlow: DrivingFlow<T>,
         message?: Message<T>
-    ): DrivingFlow;
+    ): DrivingFlow<T>;
 
     protected abstract unreachable (
         drivingFlow: DrivingFlow,

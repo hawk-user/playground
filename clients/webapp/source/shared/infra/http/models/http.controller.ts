@@ -44,7 +44,7 @@ export abstract class HttpController<H> extends AgnosticController<H> {
             .respondWithText(message);
     }
 
-    protected ok<R>(
+    protected success<R>(
         drivingFlow: DrivingFlow<R>,
         message?: Message<R>
     ): DrivingFlow<R> {
@@ -53,14 +53,14 @@ export abstract class HttpController<H> extends AgnosticController<H> {
             : this.respondWithStatus(drivingFlow, okCode);
     }
 
-    protected invalid (
+    protected external (
         drivingFlow: DrivingFlow,
         message: Text,
     ): DrivingFlow {
         return this.textResponse(drivingFlow, clientErrCode, message);
     }
 
-    protected notFound (
+    protected unreachable (
         drivingFlow: DrivingFlow,
         message: Text,
     ): DrivingFlow {
