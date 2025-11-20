@@ -2,5 +2,5 @@ export {
     AgnosticController,
     type Message,
     type Text,
-    type Outbound
+    type DrivingFlow
 } from './agnostic.controller';

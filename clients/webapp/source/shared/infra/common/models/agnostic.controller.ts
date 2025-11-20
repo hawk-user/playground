@@ -1,64 +1,65 @@
+import { type ReasonsToCommunicate } from '@shared/core';
+
 export type Message<T> = Readonly<T>;
 export type Text = Message<string>;
 
-export interface Outbound {
-    useFallbackCode (): Readonly<number>;
-    respondWithMessage<Content> (message: Message<Content>): this;
-    respondWithText (text: Text): this;
-    withStatusCode (code: number): this;   
+export interface DrivingFlow<K = Text> {
+    respondWithText: ReasonsToCommunicate<[text: Text], this>;
+    withStatusCode: ReasonsToCommunicate<[code: number], this>;
+    respondWithMessage: ReasonsToCommunicate<[message: Message<K>], this>;
 }
 
 export abstract class AgnosticController<Y = void> {
 
     protected abstract executeImpl (
-        outbound: Outbound,
+        drivingFlow: DrivingFlow,
     ): Promise<Y>;
 
     public async execute(
-        outbound: Outbound,
+        drivingFlow: DrivingFlow,
     ): Promise<void> {
         try {
-            await this.executeImpl(outbound);
+            await this.executeImpl(drivingFlow);
         } catch (error: unknown) {
-            this.internal(outbound, String(error));
+            this.internal(drivingFlow, String(error));
         }
     }
 
-    protected abstract message<Content> (
-        outbound: Outbound,
+    protected abstract message<T> (
+        drivingFlow: DrivingFlow<T>,
         statusCode: number,
-        message: Message<Content>
-    ): Outbound;
+        message: Message<T>
+    ): DrivingFlow<T>;
 
-    protected abstract respondWithStatus (
-        outbound: Outbound,
+    protected abstract respondWithStatus<T> (
+        drivingFlow: DrivingFlow<T>,
         statusCode: number,
-    ): Outbound;
+    ): DrivingFlow<T>;
 
     protected abstract textResponse (
-        outbound: Outbound,
+        drivingFlow: DrivingFlow,
         statusCode: number,
         message: Text
-    ): Outbound;
+    ): DrivingFlow;
 
-    protected abstract success<Content> (
-        outbound: Outbound,
-        message?: Message<Content>
-    ): Outbound;
+    protected abstract success<T> (
+        drivingFlow: DrivingFlow,
+        message?: Message<T>
+    ): DrivingFlow;
 
     protected abstract unreachable (
-        outbound: Outbound,
+        drivingFlow: DrivingFlow,
         message: Text,
-    ): Outbound;
+    ): DrivingFlow;
 
     protected abstract external (
-        outbound: Outbound,
+        drivingFlow: DrivingFlow,
         message: Text,
-    ): Outbound;
+    ): DrivingFlow;
 
     protected abstract internal (
-        outbound: Outbound,
+        drivingFlow: DrivingFlow,
         message: Text,
-    ): Outbound;
+    ): DrivingFlow;
 
 }
