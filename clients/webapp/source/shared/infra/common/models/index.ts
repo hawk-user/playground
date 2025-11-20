@@ -1,6 +1,6 @@
 export { 
     AgnosticController,
-    type Data,
+    type Message,
     type Text,
     type Outbound
 } from './agnostic.controller';

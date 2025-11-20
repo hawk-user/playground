@@ -41,17 +41,17 @@ export abstract class AgnosticController<Y = void> {
         message: Text
     ): Outbound;
 
-    protected abstract ok<Content>(
+    protected abstract success<Content> (
         outbound: Outbound,
         message?: Message<Content>
     ): Outbound;
 
-    protected abstract notFound (
+    protected abstract unreachable (
         outbound: Outbound,
         message: Text,
     ): Outbound;
 
-    protected abstract invalid (
+    protected abstract external (
         outbound: Outbound,
         message: Text,
     ): Outbound;
