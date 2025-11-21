@@ -1,7 +1,7 @@
 import { type CommonController } from '@shared/infra/common/models';
 import { type Response } from "express";
 
-export abstract class ExpressBaseController<T> implements CommonController<Response, T> {
+export abstract class BaseController<T> implements CommonController<Response, T> {
 
     protected abstract executeImpl (response: Response): Promise<void>;
 

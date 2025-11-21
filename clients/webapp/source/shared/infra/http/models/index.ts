@@ -1,1 +1,1 @@
-export { ExpressBaseController } from './express.base.controller';
+export { BaseController } from './base.controller';
