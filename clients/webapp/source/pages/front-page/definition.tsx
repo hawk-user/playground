@@ -6,5 +6,5 @@ const isFrontPage = true;
 const { documentTitle } = frontPageSEO;
 
 export const FrontPageDefinition = Page.create(
-    documentTitle, <FrontPageLayout seo={frontPageSEO}/>, isFrontPage
+    documentTitle, <FrontPageLayout/>, isFrontPage
 );

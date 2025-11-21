@@ -1,6 +1,8 @@
 import { BaseRoute } from '../infra/web';
 import { FrontPageDefinition } from './front-page';
 
-export const pageConfigs = [
-    BaseRoute.defineRoute(FrontPageDefinition)
-];
+export const pageConfigs = {
+    [FrontPageDefinition.getPath()]: FrontPageDefinition
+}
+
+export const pageRoutes = BaseRoute.defineRoutes(pageConfigs)
