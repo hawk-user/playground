@@ -1,6 +1,5 @@
 export { 
-    AgnosticController,
+    type CommonController,
     type Message,
-    type Text,
-    type DrivingFlow
-} from './agnostic.controller';
+    type Text
+} from './common.controller';

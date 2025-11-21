@@ -1,18 +1,17 @@
 import { 
     type IsValidPort,
-    type DrivenPorts,
-    type DrivingPorts
+    type Port,
 } from './communication';
 
 export interface Logic<
-    R,
-    D extends { [K in keyof D]: IsValidPort<D[K]> },
-    I extends { [K in keyof I]: IsValidPort<I[K]> }
+    Result,
+    Driving extends { [K in keyof Driving]: IsValidPort<Driving[K]> },
+    Driven extends { [K in keyof Driven]: IsValidPort<Driven[K]> } = undefined
 > {
 
     execute(
-        driving: DrivingPorts<D>,
-        driven?: DrivenPorts<I>
-    ): Promise<R> | R;
+        driving: Port<Driving>,
+        driven?: Port<Driven>
+    ): Promise<Result> | Result;
     
 }

@@ -1,81 +1,74 @@
 import { 
-    AgnosticController,
+    type CommonController,
     type Message,
-    type Text,
-    type DrivingFlow
+    type Text
 } from '@shared/infra/common/models';
 
-const okCode = 200;
-const clientErrCode = 400;
-const notFoundCode = 404;
-const internalErrCode = 500;
+import { type ReasonsToCommunicate } from '@shared/core';
 
-type HttpCode = typeof okCode
-| typeof clientErrCode
-| typeof notFoundCode
-| typeof internalErrCode;
+interface HttpProcessor {
+    ok: ReasonsToCommunicate<[message?: Message<unknown>], this>;
+    send: ReasonsToCommunicate<[code: number, message: Message<unknown>], this>;
+    sendText: ReasonsToCommunicate<[message: Message<string>], this>;
+};
 
-export abstract class HttpController<H> extends AgnosticController<H> {
+export abstract class HttpController<Y = void> implements CommonController<HttpProcessor> {
 
-    protected message<T> (
-        drivingFlow: DrivingFlow<T>,
-        code: HttpCode,
+    protected abstract executeImpl (
+        driving: HttpProcessor,
+    ): Promise<Y>;
+
+    public async execute(
+        driving: HttpProcessor,
+    ): Promise<void> {
+        try {
+            await this.executeImpl(driving);
+        } catch (error: unknown) {
+            this.internal(driving, String(error));
+        }
+    }
+
+    public message<T> (
+        driving: HttpProcessor,
+        code: number,
         message: Message<T>
-    ): DrivingFlow<T> {  
-        return drivingFlow
-            .withStatusCode(code)
-            .respondWithMessage(message);
+    ): HttpProcessor {  
+        return driving.send(code, message);
     }
 
-    protected respondWithStatus<T> (
-        drivingFlow: DrivingFlow<T>,
-        code: HttpCode,
-    ): DrivingFlow<T> {
-        return drivingFlow.withStatusCode(code);
-    }
-
-    protected textResponse (
-        drivingFlow: DrivingFlow,
-        code: HttpCode,
+    public textResponse (
+        driving: HttpProcessor,
         message: Text
-    ): DrivingFlow {
-        return drivingFlow
-            .withStatusCode(code)
-            .respondWithText(message);
+    ): HttpProcessor {
+        return driving.sendText(message);
     }
 
-    protected success<R>(
-        drivingFlow: DrivingFlow<R>,
+    public success<R>(
+        driving: HttpProcessor,
         message?: Message<R>
-    ): DrivingFlow<R> {
-        return message
-            ? this.message(drivingFlow, okCode, message)
-            : this.respondWithStatus(drivingFlow, okCode);
+    ): HttpProcessor {
+        return driving.ok(message);
     }
 
-    protected external (
-        drivingFlow: DrivingFlow,
+    public external (
+        driving: HttpProcessor,
         message: Text,
-    ): DrivingFlow {
-        return this.textResponse(drivingFlow, clientErrCode, message);
+    ): HttpProcessor {
+        return driving.send(400, message);
     }
 
-    protected unreachable (
-        drivingFlow: DrivingFlow,
+    public unreachable (
+        driving: HttpProcessor,
         message: Text,
-    ): DrivingFlow {
-        return this.textResponse(drivingFlow, notFoundCode, message);
+    ): HttpProcessor {
+        return driving.send(404, message);
     }
 
-    protected internal (
-        drivingFlow: DrivingFlow,
+    public internal (
+        driving: HttpProcessor,
         message: Text,
-    ): DrivingFlow {
-        return this.textResponse(
-            drivingFlow,
-            internalErrCode,
-            message
-        );
+    ): HttpProcessor {
+        return driving.send(500, message);
     }
 
 }
