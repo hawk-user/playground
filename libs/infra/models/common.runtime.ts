@@ -1,4 +1,4 @@
-import { type ReasonsToCommunicate } from '@shared/core';
+import { type ReasonsToCommunicate } from '@libs/core';
 
 export interface CommonRuntime {
     fileURLToPath: ReasonsToCommunicate<[url: string], string>

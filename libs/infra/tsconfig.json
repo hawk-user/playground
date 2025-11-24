@@ -1,0 +1,10 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "references": [ { "path": "../core" }],
+    "compilerOptions": {
+        "composite": true,
+        "moduleResolution": "node",
+        "noEmit": false
+    },
+    "include": [ "models" ]
+}

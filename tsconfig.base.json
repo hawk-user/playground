@@ -7,7 +7,6 @@
         "verbatimModuleSyntax": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "allowImportingTsExtensions": true,
         "strict": true,
         "noImplicitAny": true,
         "forceConsistentCasingInFileNames": true,
@@ -18,7 +17,11 @@
         "noUncheckedSideEffectImports": true,
         "erasableSyntaxOnly": true,
         "allowJs": false,
+        "noEmit": false,
         "baseUrl": ".",
-        "noEmit": true
+        "paths": {
+            "@libs/core": ["libs/core/source/index.ts"],
+            "@libs/infra/*": [ "libs/infra/*/index.ts" ]
+        }
     }
 }
