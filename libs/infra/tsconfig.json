@@ -6,5 +6,5 @@
         "moduleResolution": "node",
         "noEmit": false
     },
-    "include": [ "models" ]
+    "include": [ "contracts" ]
 }
