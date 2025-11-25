@@ -14,6 +14,10 @@ export {
 } from './logic';
 
 export {
+    type Logger
+} from './logger';
+
+export {
     Emit,
     Interrupt,
     Result,
