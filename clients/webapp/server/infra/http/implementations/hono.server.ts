@@ -4,7 +4,7 @@ import {
     type Handler
 } from '@libs/infra/contracts';
 
-import { BaseRutime } from './base.runtime';
+import { NodeJSRutime } from './nodejs.runtime';
 import { serve } from '@hono/node-server';
 
 import { 
@@ -13,9 +13,9 @@ import {
     type Next 
 } from 'hono';
 
-export class BaseServer implements CommonServer<Context, Next> {
+export class HonoServer implements CommonServer<Context, Next> {
 
-    runtime: CommonRuntime = new BaseRutime();
+    runtime: CommonRuntime = new NodeJSRutime();
     app: Hono = new Hono();
 
     public start = (): void => { serve(this.app) };

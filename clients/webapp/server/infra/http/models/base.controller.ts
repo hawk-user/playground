@@ -1,21 +1,21 @@
 import { 
     type CommonController
-} from '@libs/infra/common/models';
+} from '@libs/infra/contracts';
 
-import Hono from 'hono';
+import { type Context } from 'hono';
 
 const INTERNAL = 500;
 
 type HTTPStatusCode = typeof INTERNAL;
 
 export abstract class BaseController implements CommonController<
-    Hono.Context,
+    Context,
     HTTPStatusCode
 > {
 
-    protected abstract executeImpl (response: Hono.Context): Promise<void>;
+    protected abstract executeImpl (response: Context): Promise<void>;
 
-    public async execute(response: Hono.Context): Promise<void> {
+    public async execute(response: Context): Promise<void> {
         try {
             await this.executeImpl(response);
         } catch (error: unknown) {
@@ -24,14 +24,14 @@ export abstract class BaseController implements CommonController<
     }
 
     public sendHtml (
-        response: Hono.Context,
+        response: Context,
         html: string
     ) {
         return response.html(html);
     } 
 
     public sendText (
-        response: Hono.Context,
+        response: Context,
         code: HTTPStatusCode,
         message: string
     ) {

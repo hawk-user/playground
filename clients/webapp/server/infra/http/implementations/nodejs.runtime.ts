@@ -6,7 +6,7 @@ import nodeUrl from 'node:url';
 import nodePath from 'node:path';
 import nodeFs from 'node:fs';
 
-export class BaseRutime implements CommonRuntime {
+export class NodeJSRutime implements CommonRuntime {
 
     public fileURLToPath (url: string): string {
         return nodeUrl.fileURLToPath(url);
