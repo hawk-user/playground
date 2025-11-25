@@ -1,1 +1,0 @@
-export { FrontPageDefinition } from './definition';
