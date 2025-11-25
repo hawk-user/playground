@@ -6,7 +6,7 @@ export interface Semantic {
 
 export interface PageConfig<K> {
     isRoot?: boolean;
-    view: K;
+    layout: K;
 }
 
 export class Page<T> {
@@ -33,8 +33,8 @@ export class Page<T> {
         return this.semantic.title;
     }
 
-    public getView (): T {
-        return this.config.view;
+    public getLayout (): T {
+        return this.config.layout;
     }
 
     public getPath(): string {
