@@ -1,1 +1,1 @@
-export { TextUtilies } from './text.utilities';
+export { TextUtilities } from './text.utilities';

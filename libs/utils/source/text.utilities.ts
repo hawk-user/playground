@@ -1,4 +1,4 @@
-export class TextUtilies {
+export class TextUtilities {
 
     public static removeAccents (text: string): string {
         return text
