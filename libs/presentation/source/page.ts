@@ -1,13 +1,5 @@
 import { TextUtilities } from '@libs/utils';
-
-export interface Semantic {
-    title: string;
-}
-
-export interface PageConfig<K> {
-    isRoot?: boolean;
-    layout: K;
-}
+import { type PageConfig, type Semantic } from './contracts';
 
 export class Page<T> {
 

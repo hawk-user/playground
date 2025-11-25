@@ -1,5 +1,2 @@
-export {
-    type PageConfig,
-    type Semantic,
-    Page
-} from './page';
+export { Page } from './page';
+export { PageRouter } from './page.router';
