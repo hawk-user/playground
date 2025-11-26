@@ -20,7 +20,7 @@ export class PageMap {
 
      public static toHtmlString (
         page: Page<JSX.Element>,
-        sourceFile: string = 'index.ts'
+        sourceFile: string = 'client.entry.ts'
     ): string {
         const html = renderToStaticMarkup(
             <html lang="fr">
