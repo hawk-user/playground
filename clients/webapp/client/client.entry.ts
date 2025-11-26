@@ -1,8 +1,8 @@
 import ReactDomClient from 'react-dom/client';
 import { pages } from './pages';
-import { RenderMap } from './mappers';
+import { PageMap } from './mappers';
 
-ReactDomClient.hydrateRoot(
+ReactDomClient.hydrateRoot (
     document.getElementById('root')!,
-    RenderMap.toClient(pages)
+    PageMap.toJsx(pages)
 );

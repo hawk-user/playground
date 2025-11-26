@@ -1,1 +1,1 @@
-export { RenderMap } from './render.map';
+export { PageMap } from './page.map';
