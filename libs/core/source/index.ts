@@ -14,8 +14,8 @@ export {
 } from './logic';
 
 export {
-    type CommonLogger
-} from './common.logger';
+    type CoreLogger
+} from './core.logger';
 
 export {
     Emit,

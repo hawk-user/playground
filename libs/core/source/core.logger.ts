@@ -1,6 +1,6 @@
 import { type ReasonsToCommunicate } from './communication';
 
-export interface CommonLogger {
+export interface CoreLogger {
     fatal: ReasonsToCommunicate<[message: string], void>;
     error: ReasonsToCommunicate<[message: string], void>;
     warning: ReasonsToCommunicate<[message: string], void>;

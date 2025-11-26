@@ -4,7 +4,7 @@ import {
     type Handler
 } from '@libs/infra/contracts';
 
-import { type CommonLogger } from '@libs/core';
+import { type CoreLogger } from '@libs/core';
 import { serve } from '@hono/node-server';
 
 import { 
@@ -17,15 +17,14 @@ export class HonoServer implements CommonServer<
     HonoContext,
     HonoNext
 > {
-
     
     private app: Hono;
-    private logger: CommonLogger;
+    private logger: CoreLogger;
     protected runtime: CommonRuntime;
 
     private constructor (
         runtime: CommonRuntime,
-        logger: CommonLogger
+        logger: CoreLogger
     ) {
         this.app = new Hono();
         this.logger = logger;
@@ -46,7 +45,7 @@ export class HonoServer implements CommonServer<
 
     public static use(
         runtime: CommonRuntime,
-        logger: CommonLogger
+        logger: CoreLogger
     ) {
         return new HonoServer(runtime, logger);
     }

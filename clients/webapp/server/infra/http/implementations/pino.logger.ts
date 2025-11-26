@@ -1,7 +1,7 @@
-import { type CommonLogger } from '@libs/core';
+import { type CoreLogger } from '@libs/core';
 import pino from 'pino';
 
-export class PinoLogger implements CommonLogger {
+export class PinoLogger implements CoreLogger {
 
     private logger: pino.Logger;
 
