@@ -4,14 +4,14 @@ import {
 } from './communication';
 
 export interface Logic<
-    Result,
-    Driving extends { [K in keyof Driving]: IsValidPort<Driving[K]> },
-    Driven extends { [K in keyof Driven]: IsValidPort<Driven[K]> } = undefined
+    E extends { [K in keyof E]: IsValidPort<E[K]> },
+    R extends { [K in keyof R]: IsValidPort<R[K]> },
+    T = void,
 > {
 
     execute(
-        driving: Port<Driving>,
-        driven?: Port<Driven>
-    ): Promise<Result> | Result;
+        exposed?: Port<E>,
+        required?: Port<R>
+    ): Promise<T> | T;
     
 }
