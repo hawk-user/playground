@@ -1,25 +1,31 @@
-export { 
-    type ReasonsToCommunicate
+export { CoreLogger } from './core.logger';
+
+export type { 
+    IsValidPort,
+    Port,
+    ReasonForBeing
 } from './communication';
+
+export type {
+    Fault
+} from './fault';
 
 export {
     ExternalFault,
     InternalFault,
     UnreacheableFault,
-    type Fault
 } from './fault';
 
-export {
-    type Logic
+export type {
+    Logic
 } from './logic';
 
-export {
-    type CoreLogger
-} from './core.logger';
+export type {
+    EmitOrInterrupt
+} from './result';
 
 export {
     Emit,
     Interrupt,
-    Result,
-    type EmitOrInterrupt
+    Result
 } from './result';
