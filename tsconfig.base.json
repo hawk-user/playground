@@ -21,7 +21,7 @@
         "baseUrl": ".",
         "paths": {
             "@libs/core": ["libs/core/source/index.ts"],
-            "@libs/infra/*": [ "libs/infra/*/index.ts" ],
+            "@libs/infra": ["libs/infra/source/index.ts"],
             "@libs/presentation": ["libs/presentation/source/index.ts"],
             "@libs/utils": ["libs/utils/source/index.ts"]
         }
