@@ -4,7 +4,8 @@
     "compilerOptions": {
         "composite": true,
         "moduleResolution": "node",
+        "rootDir": "source",
         "noEmit": false
     },
-    "include": [ "contracts" ]
+    "include": ["contracts"]
 }
