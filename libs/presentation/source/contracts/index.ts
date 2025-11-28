@@ -1,2 +1,2 @@
-export { type PageConfig } from './page.config';
-export { type Semantic } from './semantic';
+export * from './page.config';
+export * from './semantic';
