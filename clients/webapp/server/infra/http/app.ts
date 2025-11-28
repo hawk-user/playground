@@ -1,11 +1,8 @@
-import { 
-    HonoServer,
-    NodeJSRutime,
-    PinoLogger
-} from './implementations';
+import { NodeJSRutime } from './implementations';
+import { BaseLogger, BaseServer } from './models';
 
 const runtime = new NodeJSRutime();
-const logger = new PinoLogger(true);
+const logger = new BaseLogger(true);
+const app = new BaseServer(runtime, logger);
 
-const app = HonoServer.use(runtime, logger);
 app.startOn(5010);

@@ -1,7 +1,4 @@
-import { 
-    type CommonRuntime
-} from '@libs/infra/contracts';
-
+import { type CommonRuntime } from '@libs/infra';
 import nodeUrl from 'node:url';
 import nodePath from 'node:path';
 import nodeFs from 'node:fs';
@@ -22,7 +19,8 @@ export class NodeJSRutime implements CommonRuntime {
 
     public resolvePath (path: string): string {
         const dirname = this.pathToDirname(
-            this.fileURLToPath(import.meta.url));
+            this.fileURLToPath(import.meta.url)
+        );
         return nodePath.resolve(dirname, path);
     };
 
