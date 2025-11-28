@@ -1,5 +1,6 @@
 packages:
-  - clients/**
+  - 'clients/**'
+  - 'libs/**'
 
 onlyBuiltDependencies:
   - '@swc/core'
