@@ -1,4 +1,10 @@
-export { CoreLogger } from './core.logger';
+export type { 
+    CoreLoggerFatal,
+    CoreLoggerDebug,
+    CoreLoggerError,
+    CoreLoggerInformational,
+    CoreLoggerWarning
+} from './core.logger';
 
 export type { 
     IsValidPort,
@@ -29,3 +35,5 @@ export {
     Interrupt,
     Result
 } from './result';
+
+export { CoreLogger } from './core.logger';
