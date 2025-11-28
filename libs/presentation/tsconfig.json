@@ -3,9 +3,9 @@
     "references": [ { "path": "../utils" }],
     "compilerOptions": {
         "composite": true,
+        "moduleResolution": "node",
         "rootDir": "source",
-        "noEmit": false,
-        "moduleResolution": "node"
+        "noEmit": false
     },
-    "include": [ "source" ]
+    "include": ["source"]
 }
