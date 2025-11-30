@@ -6,7 +6,7 @@ import {
 
 import { type Context } from 'hono';
 
-export abstract class BaseController extends HttpResponseLayer<Context> {
+export abstract class HonoController extends HttpResponseLayer<Context> {
 
      public sendText: CommonControllerSendText<Context, LiteralHttpStatus> = (
         response: Context,

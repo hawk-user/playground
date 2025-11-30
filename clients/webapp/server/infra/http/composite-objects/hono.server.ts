@@ -7,7 +7,7 @@ import { CommonServer, CommonLogger } from '@libs/infra';
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 
-export class BaseServer extends CommonServer<Hono> {
+export class HonoServer extends CommonServer<Hono> {
     
     constructor (
         runtime: CommonRuntime,

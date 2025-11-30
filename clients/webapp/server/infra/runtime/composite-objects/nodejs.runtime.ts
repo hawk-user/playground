@@ -11,7 +11,7 @@ import nodeUrl from 'node:url';
 import nodePath from 'node:path';
 import nodeFs from 'node:fs';
 
-export class BaseRuntime extends CommonRuntime {
+export class NodeJSRuntime extends CommonRuntime {
 
     constructor (env: CommonEnv) { super(env) }
 

@@ -4,5 +4,8 @@
         "types": ["node"],
         "moduleResolution": "node"
     },
-    "include": ["infra/**/*"]
+    "include": [
+        "infra/**/*",
+        "dev.index.ts"
+    ]
 }

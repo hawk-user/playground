@@ -9,7 +9,7 @@ import {
 
 import pino from 'pino';
 
-export class BaseLogger extends CommonLogger {
+export class PinoLogger extends CommonLogger {
 
     private logger: pino.Logger;
 
