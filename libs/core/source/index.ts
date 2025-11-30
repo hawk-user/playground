@@ -1,39 +1,21 @@
-export type { 
-    CoreLoggerFatal,
-    CoreLoggerDebug,
-    CoreLoggerError,
-    CoreLoggerInformational,
-    CoreLoggerWarning
-} from './core.logger';
-
-export type { 
-    IsValidPort,
-    Port,
-    ReasonForBeing
+export { 
+    type IsValidPort,
+    type Port,
+    type ReasonForBeing
 } from './communication';
-
-export type {
-    Fault
-} from './fault';
 
 export {
     ExternalFault,
     InternalFault,
     UnreacheableFault,
+    type Fault
 } from './fault';
 
-export type {
-    Logic
-} from './logic';
-
-export type {
-    EmitOrInterrupt
-} from './result';
+export { type Logic } from './logic';
 
 export {
     Emit,
     Interrupt,
-    Result
+    Result,
+    type EmitOrInterrupt
 } from './result';
-
-export { CoreLogger } from './core.logger';

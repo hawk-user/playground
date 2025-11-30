@@ -1,32 +1,25 @@
-import { 
-    type ReasonForBeing,
-    type CoreLogger,
-} from '@libs/core';
+import {  type ReasonForBeing } from '@libs/core';
+import { CommonRuntime } from './common.runtime';
+import { CommonLogger } from './common.logger';
 
-import { type CommonRuntime } from './common.runtime';
-import { type CommonSetup } from './common.setup';
-
-export type CommonServerStartOn = ReasonForBeing<[port: number], void>;
+export type CommonServerStart = ReasonForBeing<[], void>;
 
 export abstract class CommonServer<T> {
 
     protected readonly app: T;
-    protected readonly logger: CoreLogger;
+    protected readonly logger: CommonLogger;
     protected readonly runtime: CommonRuntime;
-    protected readonly setup?: CommonSetup;
 
-    abstract startOn: CommonServerStartOn;
+    abstract start: CommonServerStart;
 
     protected constructor(
         runtime: CommonRuntime,
-        logger: CoreLogger,
-        app: T,
-        setup?: CommonSetup
+        logger: CommonLogger,
+        app: T
     ) {
         this.runtime = runtime;
         this.logger = logger;
-        this.app = app
-        this.setup = setup
+        this.app = app;
     }
 
 }

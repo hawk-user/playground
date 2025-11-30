@@ -1,11 +1,9 @@
 import { 
     type CommonRuntime,
-    type CommonSetup,
-    type CommonServerStartOn
+    type CommonServerStart
 } from '@libs/infra';
 
-import { CommonServer } from '@libs/infra';
-import { CoreLogger } from '@libs/core';
+import { CommonServer, CommonLogger } from '@libs/infra';
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 
@@ -13,13 +11,13 @@ export class BaseServer extends CommonServer<Hono> {
     
     constructor (
         runtime: CommonRuntime,
-        logger: CoreLogger,
-        setup?: CommonSetup
+        logger: CommonLogger
     ) {
-        super(runtime, logger, new Hono(), setup);
+        super(runtime, logger, new Hono());
     }
 
-    startOn: CommonServerStartOn = (port: number) => {
+    start: CommonServerStart = () => {
+        const port = this.runtime.getEnv().PORT;
         const options = { port, fetch: this.app.fetch };
         const message = `The server listens on port ${port}.`;
         serve(options, () => this.logger.informational(message));

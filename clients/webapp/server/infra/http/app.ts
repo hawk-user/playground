@@ -1,8 +1,13 @@
-import { NodeJSRutime } from './implementations';
-import { BaseLogger, BaseServer } from './models';
+import { 
+    BaseLogger,
+    BaseServer,
+    BaseRuntime,
+    BaseEnv
+} from './models';
 
-const runtime = new NodeJSRutime();
+const env = new BaseEnv()
+const runtime = new BaseRuntime(env);
 const logger = new BaseLogger(true);
 const app = new BaseServer(runtime, logger);
 
-app.startOn(5010);
+app.start();
