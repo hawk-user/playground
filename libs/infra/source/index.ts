@@ -3,6 +3,8 @@ export {
     type CommonServerStart 
 } from './common/common.server';
 
+export { CommonApp } from './common/common.app';
+
 export { 
     CommonRuntime,
     type CommonRuntimeFileURLToPath,

@@ -15,7 +15,7 @@ export abstract class CommonRuntime {
     abstract readFileSync: CommonRuntimeReadFileSync;
     abstract resolvePath: CommonRuntimeResolvePath;
 
-    getEnv (): Readonly<CommonEnv> {
+    public _env (): Readonly<CommonEnv> {
         return this.env;
     }
 

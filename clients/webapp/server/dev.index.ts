@@ -1,4 +1,7 @@
-import {  HonoServer } from './infra/http/composite-objects';
+import { 
+    ExpressDevServer,
+    ExpressApp
+} from './infra/http/composite-objects';
 
 import { 
     PinoLogger,
@@ -6,9 +9,10 @@ import {
     BaseEnv
 } from './infra/runtime/composite-objects';
 
-const devEnv = new BaseEnv();
-const runtime = new NodeJSRuntime(devEnv);
+const env = new BaseEnv();
+const runtime = new NodeJSRuntime(env);
 const logger = new PinoLogger(true);
-const app = new HonoServer(runtime, logger);
+const app = new ExpressApp(runtime, logger);
+const server = new ExpressDevServer(app);
 
-app.start();
+server.start();
