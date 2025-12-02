@@ -1,6 +1,8 @@
 export { 
     CommonServer,
-    type CommonServerStart 
+    type CommonServerStart,
+    type CommonServerUsePlugin,
+    type CommonServerPlugin
 } from './common/common.server';
 
 export { CommonApp } from './common/common.app';
