@@ -17,7 +17,7 @@ const logger = new PinoLogger(true);
 const app = new ExpressApp(runtime, logger);
 
 const server = new ExpressServer(
-    app, [ viteDevPlugin ]
+    app, [viteDevPlugin]
 );
 
 server.start();
