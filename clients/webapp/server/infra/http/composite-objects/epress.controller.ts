@@ -1,16 +1,16 @@
 import {
-    HttpResponseLayer,
+    HttpController,
     type CommonControllerSendText,
-    type LiteralHttpStatus
+    type HttpStatusCode
 } from '@libs/infra';
 
-import { type Response } from 'express';
+import { type Response, type Request } from 'express';
 
-export abstract class ExpressController extends HttpResponseLayer<Response> {
+export abstract class ExpressController extends HttpController<Request, Response> {
 
-     public sendText: CommonControllerSendText<Response, LiteralHttpStatus> = (
+     public sendText: CommonControllerSendText<Response, HttpStatusCode> = (
         response: Response,
-        code: LiteralHttpStatus,
+        code: HttpStatusCode,
         message: string
     ) =>  response.status(code).send(message);
 

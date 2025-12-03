@@ -33,7 +33,7 @@ export{
 } from './common/common.controller';
 
 export {
-    HttpResponseLayer,
-    type HttpStatus,
-    type LiteralHttpStatus
-} from './http/http.response.layer';
+    HttpController,
+    type HttpStatusCodeList,
+    type HttpStatusCode
+} from './http/http.controller';
