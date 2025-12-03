@@ -33,8 +33,8 @@ export class PageRouter  {
         routeFactory: RouteFactory<I, O>
     ): O {
         return routeFactory({
-            key: page.getPath()!,
-            path: page.getPath()!,
+            key: page.getPath(),
+            path: page.getPath(),
             layout: page.getLayout()
         });
     }
